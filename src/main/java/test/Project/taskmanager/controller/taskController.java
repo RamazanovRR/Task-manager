@@ -5,25 +5,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import test.Project.taskmanager.model.Task;
 import test.Project.taskmanager.repository.TaskRepository;
-
+import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/task")
-public class taskController {
-
-    private int count = 4;
+public class TaskController {
 
     private TaskRepository taskRepository;
 
     @Autowired
-    public taskController(TaskRepository taskRepository) {
+    public TaskController(TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
     }
 
     @GetMapping
     public List<Task> list(){
-        return taskRepository.findAll();
+        List<Task> arrList = taskRepository.findAll();
+
+        //Sorted collection of task from DB by id field
+        Collections.sort(arrList);
+        return arrList;
     }
 
     @GetMapping("{id}")
@@ -33,6 +37,8 @@ public class taskController {
 
     @PostMapping
     public Task create(@RequestBody Task task){
+        // The method recorded the local date and time in the task object at the moment of create
+        task.setCreateDate(LocalDateTime.now());
         return taskRepository.save(task);
     }
 
