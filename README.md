@@ -5,7 +5,8 @@
 For building and running the application you need:
 
 - [PostgreSQL 9.5](https://www.postgresql.org)  or higher
-- [JDK 1.8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+- [JDK 1.8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) or [Liberica OJDK](https://bell-sw.com/pages/java-11.0.4/)
+- [Apache Maven](https://maven.apache.org)
 
 ## Steps to Setup
 
